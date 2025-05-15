@@ -1,0 +1,29 @@
+name: Create CentOS Folder and File
+on: [push, workflow_dispatch]  # Trigger on push or manual run
+
+jobs:
+  create-structure:
+    runs-on: ubuntu-latest  # GitHub's Linux runner
+    container: centos:7     # Uses official CentOS 7 Docker image
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create folder and file
+        run: |
+          # Create folder
+          mkdir -p /home/day4
+          
+          # Create file with content
+          echo "GitHub Actions Learning - Day 4" > /home/day4/github_action_learning.txt
+          
+          # Verify creation
+          ls -l /home/day4
+          cat /home/day4/github_action_learning.txt
+
+      - name: Upload as artifact (optional)
+        uses: actions/upload-artifact@v3
+        with:
+          name: day4-files
+          path: /home/day4
