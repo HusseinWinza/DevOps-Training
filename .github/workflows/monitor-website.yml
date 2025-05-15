@@ -1,0 +1,21 @@
+name: Ajira Portal Monitor
+on:
+  schedule:
+    - cron: '0 * * * *' 
+  workflow_dispatch:     
+
+jobs:
+  monitor-ajira:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5   
+    
+    steps:
+      - name: Create log directories
+        run: |
+          mkdir -p ajira_logs
+          echo "Monitor started at $(date +'%Y-%m-%d %H:%M:%S')" >> ajira_logs/history.log
+
+      - name: Check Ajira Portal status
+        id: healthcheck
+        run: |
+          TIMESTAMP=$(date +'%
