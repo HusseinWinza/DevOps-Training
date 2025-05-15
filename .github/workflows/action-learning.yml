@@ -1,0 +1,21 @@
+name: hello-world
+on: 
+  push:
+    branches: [ main ]  # Trigger only on pushes to main branch
+
+jobs:
+  my-job:
+    name: My Hello World Job
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Print greeting
+        run: echo "Hello World!"
+        
+      - name: Show system info  # Bonus step
+        run: |
+          echo "Runner OS: $(uname -s)"
+          echo "Current directory: $(pwd)"
