@@ -1,0 +1,17 @@
+name: simba-app 2
+on: push
+jobs:
+  first-job:
+    runs-on: ubuntu-latest  # Corrected: lowercase 'ubuntu-latest'
+    steps:
+      - name: Create file
+        run: touch happie.txt  # Fixed: 'mkdir' creates directories, 'touch' creates files
+
+      - name: Show files
+        run: ls -l
+
+      - name: Display text
+        run: echo "This is my second workflow."
+
+      - name: Open link
+        run: curl https://www.simba.co.tz
